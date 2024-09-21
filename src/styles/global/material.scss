@@ -1,0 +1,46 @@
+.mat-typography {
+  @extend .mat-body-medium;
+
+  h2 {
+    @extend .mat-headline-medium;
+  }
+
+  h3 {
+    @extend .mat-headline-small;
+  }
+}
+
+.cdk-overlay-pane:not(.mat-mdc-autocomplete-panel-above) div.mat-mdc-autocomplete-panel {
+  border-radius: 20px;
+}
+
+.mdc-text-field {
+  &--outlined {
+    --mdc-outlined-text-field-container-shape: 28px;
+  }
+
+  .mat-mdc-notch-piece {
+    background-color: white;
+  }
+
+  input {
+    z-index: 1;
+    position: relative;
+  }
+
+  .mat-mdc-icon-button {
+    width: var(--mat-form-field-container-height);
+    height: var(--mat-form-field-container-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.mat-mdc-outlined-button {
+  background-color: white;
+}
+
+.mdc-button {
+  height: var(--mat-form-field-container-height);
+}

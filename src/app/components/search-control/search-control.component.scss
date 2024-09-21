@@ -1,0 +1,51 @@
+$autocomplete-panel-z-index: 1000;
+
+:host {
+  .search-field {
+    width: 100%;
+    position: relative;
+    z-index: $autocomplete-panel-z-index + 1;
+
+    &.autocomplete-opened {
+      --mdc-outlined-text-field-outline-width: 0;
+      --mdc-outlined-text-field-outline-color: transparent;
+      --mdc-outlined-text-field-focus-outline-color: transparent;
+    }
+  }
+}
+
+::ng-deep {
+  .cdk-overlay-container:has(.mat-mdc-autocomplete-panel.search-terms-panel) {
+    z-index: $autocomplete-panel-z-index;
+  }
+
+  .mat-mdc-autocomplete-panel.search-terms-panel {
+    --offset: calc(var(--mat-form-field-container-height) + 4px);
+    margin-top: calc(-1 * var(--offset));
+    padding-top: var(--offset);
+    max-height: 350px;
+
+    .option {
+      display: flex;
+      align-items: center;
+
+      mat-icon {
+        font-size: 1em;
+        width: 1em;
+        height: 1em;
+      }
+
+      .mdc-list-item__primary-text {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .remove-searched-term {
+        font-size: 1em;
+        line-height: unset;
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+<mat-form-field appearance="outline" class="search-field" [class.autocomplete-opened]="_isAutocompletePanelOpened()">
+  <input
+    [placeholder]="placeholder()"
+    matInput
+    name="search"
+    type="search"
+    [matAutocomplete]="auto"
+    [(ngModel)]="_value"
+  >
+
+  @if (_value()) {
+    <button
+      matSuffix
+      mat-icon-button
+      type="button"
+      (click)="_value.set(null); this.onChange(this._value()); suggestionSelected.emit()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  }
+
+  <mat-autocomplete
+    #auto="matAutocomplete"
+    class="search-terms-panel"
+    [hideSingleSelectionIndicator]="true"
+    (optionSelected)="this.onChange(this._value()); suggestionSelected.emit()"
+    (opened)="_isAutocompletePanelOpened.set(true)"
+    (closed)="_isAutocompletePanelOpened.set(false)"
+  >
+    @if(_value()) {
+      <mat-option class="option" [value]="_value()">
+        <mat-icon>search</mat-icon>
+
+        <span>{{_value()}}</span>
+      </mat-option>
+    }
+
+    @for(searchedTerm of _filteredSearchTerms(); track searchedTerm) {
+      <mat-option class="option" [value]="searchedTerm">
+        <mat-icon>history</mat-icon>
+
+        <span [innerHTML]="searchedTerm | highlight: _value()"></span>
+
+        <button
+          mat-icon-button
+          class="remove-searched-term"
+          type="button"
+          (click)="$event.stopPropagation(); removeSearchTerm.emit(searchedTerm)"
+        >
+          <mat-icon [inline]="true">close</mat-icon>
+        </button>
+      </mat-option>
+    }
+  </mat-autocomplete>
+</mat-form-field>

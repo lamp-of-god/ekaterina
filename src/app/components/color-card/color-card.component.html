@@ -1,0 +1,11 @@
+<mat-card class="color-card" [class.active]="active()">
+  <div class="color" [style.background-color]="color().colorCode"></div>
+
+  <div class="data">
+    <h3>{{color().colorName}}</h3>
+
+    <ng-content select=".subtitle" />
+
+    <p class="code">{{ color().colorCode }}</p>
+  </div>
+</mat-card>

@@ -1,0 +1,15 @@
+<form class="filter-form" (submit)="_submit()">
+  <app-search-field
+    placeholder="Enter color name..."
+    [formControl]="_searchFormCtrl"
+    [searchTerms]="_colorFilterStore.searchTermsBySearchFrequency()"
+    (suggestionSelected)="_submit()"
+    (removeSearchTerm)="_colorFilterStore.removeSearchedItem($event)"
+  />
+
+  <button mat-stroked-button color="primary" type="submit">
+    <mat-icon>search</mat-icon>
+
+    Search
+  </button>
+</form>

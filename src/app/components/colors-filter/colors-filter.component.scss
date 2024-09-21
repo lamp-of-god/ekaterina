@@ -1,0 +1,12 @@
+:host {
+  .filter-form {
+    display: flex;
+    max-width: 500px;
+    gap: 1rem;
+    margin-inline: auto;
+
+    app-search-field {
+      flex-grow: 1;
+    }
+  }
+}

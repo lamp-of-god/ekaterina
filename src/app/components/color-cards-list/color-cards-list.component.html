@@ -1,0 +1,13 @@
+@for (color of _colors(); track color) {
+  <app-color-card
+    [color]="color"
+    [active]="_appState.activeColor() === color"
+    (click)="_appState.setActiveColor(color)"
+  >
+    @if ($index === 1) {
+      <p class="subtitle">Это вторая карточка</p>
+    }
+  </app-color-card>
+} @empty {
+  <h2 class="empty">No colors found</h2>
+}
